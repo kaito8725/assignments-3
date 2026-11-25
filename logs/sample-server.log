@@ -1,0 +1,17 @@
+INFO:     Started server process [25222]
+INFO:     Waiting for application startup.
+StreamableHTTP session manager started
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:54398 - "POST /mcp HTTP/1.1" 200 OK
+call authorization=Bearer tatekae-alice-2026
+call user=alice
+INFO:     127.0.0.1:54410 - "POST /mcp HTTP/1.1" 200 OK
+call authorization=Bearer tatekae-alice-2026
+call user=alice
+add_receipt id=15 owner=alice vendor=架空カフェ みどり amount=1800 memo=会食 同席: 架空 花子・架空 一郎(先方2名)
+INFO:     127.0.0.1:54418 - "POST /mcp HTTP/1.1" 200 OK
+call authorization=Bearer tatekae-bob-2026
+call user=bob
+add_receipt id=16 owner=bob vendor=架空レストラン amount=6200 memo=会食 同席: 架空 美咲
+INFO:     127.0.0.1:46414 - "POST /mcp HTTP/1.1" 200 OK
