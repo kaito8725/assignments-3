@@ -1,0 +1,51 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.16, pytest-9.2.0, pluggy-1.7.0 -- /home/kaito/assignments-3/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/kaito/assignments-3
+configfile: pyproject.toml
+plugins: anyio-4.16.0
+collecting ... collected 41 items
+
+tests/test_basic.py::test_search_returns_matching_receipts PASSED        [  2%]
+tests/test_basic.py::test_search_scoped_to_owner PASSED                  [  4%]
+tests/test_basic.py::test_search_limit_applies PASSED                    [  7%]
+tests/test_basic.py::test_get_own_receipt PASSED                         [  9%]
+tests/test_basic.py::test_keiri_can_get_any_receipt PASSED               [ 12%]
+tests/test_basic.py::test_add_receipt PASSED                             [ 14%]
+tests/test_basic.py::test_add_duplicate_warns PASSED                     [ 17%]
+tests/test_basic.py::test_delete_own_receipt PASSED                      [ 19%]
+tests/test_basic.py::test_export_writes_cp932_csv PASSED                 [ 21%]
+tests/test_basic.py::test_expired_token_rejected PASSED                  [ 24%]
+tests/test_basic.py::test_no_token_rejected PASSED                       [ 26%]
+tests/test_security.py::test_export_month_cannot_run_shell_commands[2026-11; touch {marker} #] PASSED [ 29%]
+tests/test_security.py::test_export_month_cannot_run_shell_commands[2026-11$(touch {marker})] PASSED [ 31%]
+tests/test_security.py::test_export_month_cannot_run_shell_commands[2026-11`touch {marker}`] PASSED [ 34%]
+tests/test_security.py::test_export_month_cannot_run_shell_commands[2026-11 && touch {marker} #] PASSED [ 36%]
+tests/test_security.py::test_search_query_cannot_inject_sql[x') OR 1=1 --] PASSED [ 39%]
+tests/test_security.py::test_search_query_cannot_inject_sql[x') OR owner='bob' --] PASSED [ 41%]
+tests/test_security.py::test_search_query_cannot_inject_sql[x') UNION SELECT 1,name,sql,1,1,1,1,1 FROM sqlite_master --] PASSED [ 43%]
+tests/test_security.py::test_search_with_quote_works PASSED              [ 46%]
+tests/test_security.py::test_applicant_cannot_get_others_receipt PASSED  [ 48%]
+tests/test_security.py::test_others_receipt_error_matches_missing PASSED [ 51%]
+tests/test_security.py::test_applicant_cannot_delete_others_receipt PASSED [ 53%]
+tests/test_security.py::test_token_not_logged[tatekae-alice-2026] PASSED [ 56%]
+tests/test_security.py::test_token_not_logged[tatekae-bob-2026] PASSED   [ 58%]
+tests/test_security.py::test_token_not_logged[tatekae-keiri-2026] PASSED [ 60%]
+tests/test_security.py::test_token_not_logged[tatekae-wrong-token] PASSED [ 63%]
+tests/test_security.py::test_mcp_json_has_no_literal_tokens PASSED       [ 65%]
+tests/test_security.py::test_memo_not_logged PASSED                      [ 68%]
+tests/test_security.py::test_add_receipt_rejects_invalid_input[overrides0] PASSED [ 70%]
+tests/test_security.py::test_add_receipt_rejects_invalid_input[overrides1] PASSED [ 73%]
+tests/test_security.py::test_add_receipt_rejects_invalid_input[overrides2] PASSED [ 75%]
+tests/test_security.py::test_add_receipt_rejects_invalid_input[overrides3] PASSED [ 78%]
+tests/test_security.py::test_add_receipt_rejects_invalid_input[overrides4] PASSED [ 80%]
+tests/test_security.py::test_search_limit_out_of_range[-1] PASSED        [ 82%]
+tests/test_security.py::test_search_limit_out_of_range[0] PASSED         [ 85%]
+tests/test_security.py::test_search_limit_out_of_range[21] PASSED        [ 87%]
+tests/test_security.py::test_search_limit_out_of_range[1000] PASSED      [ 90%]
+tests/test_security.py::test_export_month_cannot_traverse_path PASSED    [ 92%]
+tests/test_security.py::test_keiri_cannot_delete_receipt PASSED          [ 95%]
+tests/test_security.py::test_keiri_cannot_add_receipt PASSED             [ 97%]
+tests/test_security.py::test_keiri_cannot_export_receipts PASSED         [100%]
+
+============================== 41 passed in 0.59s ==============================

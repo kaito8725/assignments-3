@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "deny": [
+      "mcp__tatekae-keiri__delete_receipt",
+      "mcp__tatekae-keiri__add_receipt",
+      "mcp__tatekae-keiri__export_receipts"
+    ]
+  }
+}

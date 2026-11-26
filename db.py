@@ -65,12 +65,17 @@ _COLUMNS = "id, owner, date, vendor, amount, category, memo, created_at"
 
 
 def search_receipts(owner: str, query: str, limit: int = 10, all_owners: bool = False) -> list[dict]:
-    where = f"(vendor LIKE '%{query}%' OR memo LIKE '%{query}%')"
+    # 利用者の値は SQL に埋め込まず、? のパラメータで渡す。% と _ は文字どおりに探す
+    pattern = "%" + query.replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_") + "%"
+    where = "(vendor LIKE ? ESCAPE '\\' OR memo LIKE ? ESCAPE '\\')"
+    params: list = [pattern, pattern]
     if not all_owners:
-        where = f"owner = '{owner}' AND {where}"
-    sql = f"SELECT {_COLUMNS} FROM receipts WHERE {where} LIMIT {limit}"
+        where = f"owner = ? AND {where}"
+        params.insert(0, owner)
+    sql = f"SELECT {_COLUMNS} FROM receipts WHERE {where} ORDER BY id LIMIT ?"
+    params.append(int(limit))
     with connect() as con:
-        rows = [dict(r) for r in con.execute(sql)]
+        rows = [dict(r) for r in con.execute(sql, params)]
     con.close()
     return rows
 
